@@ -1,0 +1,40 @@
+.post-message {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+  }
+
+  .post-message form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+
+  .post-message textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: none;
+    min-height: 60px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+
+
+  .post-message button {
+    padding: 10px 20px;
+    background-color: #444744;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .post-message button:hover {
+    background-color: #262e2e;
+  }
