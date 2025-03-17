@@ -79,9 +79,6 @@ This will start the following services:
 ├── README.md
 ```
 
-## Deployment
-
-
 ## Author
 
 Yaroslav Havryliuk
