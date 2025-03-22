@@ -1,4 +1,5 @@
 import datetime
+from typing import List
 from pydantic import BaseModel
 
 
@@ -14,3 +15,9 @@ class MessageResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class PaginatedMessageResponse(BaseModel):
+    items: List[MessageResponse]
+    total: int
+    has_more: bool

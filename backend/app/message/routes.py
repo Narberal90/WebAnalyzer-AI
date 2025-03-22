@@ -14,7 +14,7 @@ router = APIRouter(
 )
 
 
-@router.get("/", response_model=List[schemas.MessageResponse])
+@router.get("/", response_model=schemas.PaginatedMessageResponse)
 async def get_messages(
     db: AsyncSession = Depends(get_db),
     current_user: models.User = Depends(get_current_user),
