@@ -13,7 +13,7 @@ const PostMessage = ({ onMessageSent }) => {
 
     try {
       await axiosInstance.post(
-        `${BASE_URL}/messages/message/`,
+        `${BASE_URL}/messages`,
         { content },
         {
           headers: {

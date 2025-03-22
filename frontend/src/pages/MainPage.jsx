@@ -14,7 +14,7 @@ const MainPage = () => {
   const fetchMessages = async () => {
     try {
       const token = localStorage.getItem("access_token");
-      const response = await axiosInstance.get(`${BASE_URL}/messages/messages`, {
+      const response = await axiosInstance.get(`${BASE_URL}/messages`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMessages(response.data);

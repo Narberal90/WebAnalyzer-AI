@@ -3,7 +3,7 @@ from typing import List
 from app.auth.oauth2 import get_current_user
 from app.database import get_db
 from app.user import models
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from . import crud, schemas
@@ -14,25 +14,26 @@ router = APIRouter(
 )
 
 
-@router.get("/messages", response_model=List[schemas.MessageResponse])
+@router.get("/", response_model=List[schemas.MessageResponse])
 async def get_messages(
     db: AsyncSession = Depends(get_db),
     current_user: models.User = Depends(get_current_user),
 ):
-    messages = await crud.get_messages(db, current_user.id)
-    return messages
+    return await crud.get_messages(db, current_user.id)
 
 
-@router.post("/message/")
+@router.post(
+    "/",
+    response_model=List[schemas.MessageResponse],
+    status_code=status.HTTP_201_CREATED,
+)
 async def post_message(
     message: schemas.MessageCreate,
     db: AsyncSession = Depends(get_db),
     current_user: models.User = Depends(get_current_user),
 ):
-    user_message, gpt_message = await crud.create_message(
+    user_msg, gpt_reply = await crud.create_message(
         db, current_user.id, message
     )
-    return {
-        "user_message": user_message.content,
-        "gpt_response": gpt_message.content,
-    }
+
+    return [user_msg, gpt_reply]
