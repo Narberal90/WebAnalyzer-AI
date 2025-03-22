@@ -9,11 +9,15 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
-async def get_messages(db: AsyncSession, user_id: int):
+async def get_messages(
+    db: AsyncSession, user_id: int, skip: int = 0, limit: int = 10
+):
     result = await db.execute(
-        select(models.Message).filter(models.Message.user_id == user_id)
+        select(models.Message)
+        .filter(models.Message.user_id == user_id)
+        .offset(skip)
+        .limit(limit)
     )
-    await db.commit()
     return result.scalars().all()
 
 

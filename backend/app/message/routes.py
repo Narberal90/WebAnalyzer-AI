@@ -18,8 +18,9 @@ router = APIRouter(
 async def get_messages(
     db: AsyncSession = Depends(get_db),
     current_user: models.User = Depends(get_current_user),
+    skip: int = 0, limit: int = 10
 ):
-    return await crud.get_messages(db, current_user.id)
+    return await crud.get_messages(db, current_user.id, skip, limit)
 
 
 @router.post(
