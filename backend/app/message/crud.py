@@ -5,7 +5,7 @@ from app.message import models, schemas
 from app.open_ai import process_message_with_openai
 from app.user.crud import check_user_exists
 from fastapi import HTTPException
-from sqlalchemy import select, func
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 

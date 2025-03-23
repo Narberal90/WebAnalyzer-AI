@@ -31,6 +31,13 @@
     opacity: 0.7;
   }
 
+  .error-message {
+    color: #ff4d4d;
+    font-size: 0.9em;
+    margin: 5px 0;
+    text-align: center;
+  }
+
 
   .post-message button {
     padding: 10px 20px;

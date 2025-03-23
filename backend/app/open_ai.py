@@ -8,7 +8,6 @@ from bs4 import BeautifulSoup
 from openai import AsyncOpenAI
 from tiktoken import encoding_for_model
 
-
 client = AsyncOpenAI(api_key=settings.OPENAI_API_KEY)
 MAX_TOKENS = 2000
 
