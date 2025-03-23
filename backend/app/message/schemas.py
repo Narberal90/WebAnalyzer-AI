@@ -1,9 +1,11 @@
 import datetime
-from pydantic import BaseModel
+from typing import List
+
+from pydantic import BaseModel, Field
 
 
 class MessageCreate(BaseModel):
-    content: str
+    content: str = Field(..., min_length=1, max_length=5000)
 
 
 class MessageResponse(BaseModel):
@@ -14,3 +16,9 @@ class MessageResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class PaginatedMessageResponse(BaseModel):
+    items: List[MessageResponse]
+    total: int
+    has_more: bool

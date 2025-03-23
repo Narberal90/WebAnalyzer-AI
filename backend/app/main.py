@@ -14,12 +14,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-@app.get("/")
-async def root():
-    return {"message": "This is root URL"}
-
-
 app.include_router(auth_routes.router)
 app.include_router(user_routes.router)
 app.include_router(message_routes.router)
