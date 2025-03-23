@@ -6,12 +6,16 @@ import '../styles/PostMessage.css';
 
 const PostMessage = ({ onMessageSent }) => {
   const [content, setContent] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isLoading) return;
+
     const token = localStorage.getItem("access_token");
 
     try {
+      setIsLoading(true);
       await axiosInstance.post(
         `${BASE_URL}/messages`,
         { content },
@@ -25,6 +29,8 @@ const PostMessage = ({ onMessageSent }) => {
       onMessageSent();
     } catch (error) {
       console.error("Error posting message", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -35,8 +41,11 @@ const PostMessage = ({ onMessageSent }) => {
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="How can i help you?"
+          disabled={isLoading}
         />
-        <button type="submit">Send</button>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? "Sending..." : "Send"}
+        </button>
       </form>
     </div>
   );
