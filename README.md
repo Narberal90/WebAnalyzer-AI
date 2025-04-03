@@ -12,7 +12,7 @@ The project consists of:
 
 ## Technologies
 
-- **Backend**: FastAPI, SQLAlchemy, TortoiseORM, OpenAI API.
+- **Backend**: FastAPI, SQLAlchemy, OpenAI API.
 - **Frontend**: React, Vite, Axios.
 - **Database**: PostgreSQL.
 - **Containerization**: Docker, Docker Compose.
